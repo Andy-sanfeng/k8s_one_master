@@ -1,0 +1,11 @@
+---
+- name: Write the config files for proxy
+  template: src=proxy.j2 dest={{ kube_config_dir }}/proxy
+  notify:
+    - restart proxy
+
+- name: Enable proxy
+  service:
+    name: kube-proxy
+    enabled: yes
+    state: started

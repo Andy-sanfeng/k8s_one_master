@@ -1,0 +1,8 @@
+---
+cluster_name: xpcluster
+kube_service_addresses: 10.254.0.0/16
+networking: flannel
+flannel_subnet: 172.16.0.0
+flannel_prefix: 12
+flannel_host_prefix: 24
+

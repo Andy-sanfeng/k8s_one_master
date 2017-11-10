@@ -1,0 +1,11 @@
+---
+- name: Write the config file for the api server
+  template: src=apiserver.j2 dest={{ kube_config_dir }}/apiserver
+  notify:
+    - restart apiserver
+
+- name: Enable apiserver
+  service:
+    name: kube-apiserver 
+    enabled: yes
+    state: started

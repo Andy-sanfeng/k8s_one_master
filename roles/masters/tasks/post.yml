@@ -1,0 +1,8 @@
+---
+- name: pull pod-infrastructure image
+  command: docker pull registry.access.redhat.com/rhel7/pod-infrastructure:latest
+  ignore_errors: yes
+
+- name: pull pause image
+  shell: docker pull kubernetes/pause && docker tag kubernetes/pause gcr.io/google_containers/pause && docker tag kubernetes/pause gcr.io/google_containers/pause-amd64:3.0
+  ignore_errors: yes

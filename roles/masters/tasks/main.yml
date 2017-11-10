@@ -1,0 +1,9 @@
+---
+- include: init.yml
+- include: apiserver.yml
+- include: controller_manager.yml
+- include: scheduler.yml
+- include: post.yml
+
+#- name: Write the kubecfg (auth) file for kubectl
+# template: src=kubectl.kubeconfig.j2 dest={{ kube_config_dir }}/kubectl.kubeconfig

@@ -1,0 +1,22 @@
+---
+- name: CentOS | Install kubernetes master
+  yum:
+    pkg=kubernetes-master
+    state=latest
+
+- name: Install python-netaddr
+  yum:
+    name: python-netaddr
+    state: present
+
+- name: Create kubernetes log directory
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: kube
+    group: kube
+  with_items:
+    - "{{ kube_log_dir }}"
+    - "{{ kube_log_apiserver }}"
+    - "{{ kube_log_controller_manager }}"
+    - "{{ kube_log_scheduler }}"

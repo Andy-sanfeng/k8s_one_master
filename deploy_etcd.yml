@@ -1,0 +1,5 @@
+---
+- name: Deploy etcd
+  hosts: etcd
+  roles:
+    - etcd

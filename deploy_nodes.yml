@@ -1,0 +1,5 @@
+---
+- name: Deploy node
+  hosts: nodes
+  roles:
+    - nodes

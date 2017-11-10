@@ -1,0 +1,26 @@
+- name: install basic pkgs
+  yum: name={{ item }} state=present
+  with_items:
+    - libselinux-python
+    - unzip
+    - docker
+    - python-rhsm
+
+- name: diabele selinux
+  selinux:
+    state: disabled
+
+- name: disable iptables and firewall
+  service:
+    name: "{{ item }}"
+    state: stopped
+    enabled: no
+  with_items:
+#    - iptables
+    - firewalld
+
+- name: enable and start docker
+  service:
+    name: docker
+    enabled: yes
+    state: started

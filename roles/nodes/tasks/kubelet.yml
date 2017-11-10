@@ -1,0 +1,11 @@
+---
+- name: Write the config files for kubelet
+  template: src=kubelet.j2 dest={{ kube_config_dir }}/kubelet
+  notify:
+    - restart kubelet
+
+- name: Enable kubelet
+  service:
+    name: kubelet
+    enabled: yes
+    state: started

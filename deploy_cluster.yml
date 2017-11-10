@@ -1,0 +1,20 @@
+---
+- hosts: all
+  gather_facts: false
+  roles:
+    - common
+
+# Install etcd
+- include: deploy_etcd.yml
+
+- hosts:
+    - mstaers
+    - nodes
+  roles:
+    - { role: flannel, when: networking == 'flannel' }
+
+# install kube master services
+- include: deploy_masters.yml
+
+# install kubernetes on the nodes
+- include: deploy_nodes.yml

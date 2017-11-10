@@ -1,0 +1,11 @@
+---
+kube_config_dir: /etc/kubernetes
+kube_master_api_port: 8080
+master0_hostname: "{{ hostvars[groups['masters'][0]]['inventory_hostname'] }}"
+etcd_hostname: "{{ hostvars[groups['etcd'][0]]['inventory_hostname'] }}"
+kube_log_dir: /var/log/k8s
+kube_log_apiserver: "{{ kube_log_dir }}/apiserver"
+kube_log_controller_manager: "{{ kube_log_dir }}/controller-manager"
+kube_log_scheduler: "{{ kube_log_dir }}/scheduler"
+kube_log_proxy: "{{ kube_log_dir }}/proxy"
+kube_log_kubelet: "{{ kube_log_dir }}/kubelet"

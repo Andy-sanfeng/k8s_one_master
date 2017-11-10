@@ -1,0 +1,34 @@
+说明：
+    1.当前版本为仅支持一个 kubernetes master 节点的部署。
+    2.etcd、kube-apiserver 等服务都是使用http，非加密通信。
+
+准备工作
+1、在所有节点上编辑 /etc/hosts 文件，如下
+cat /etc/hosts
+...
+192.168.16.10 k8s-master
+192.168.16.10 k8s-node1
+192.168.16.11 k8s-node2
+192.168.16.11 k8s-node3
+IP后面的名称，可以是主机名，也可以是其他的，就像上面的 k8s-master 等。
+
+2、master节点到所有节点的信任关系
+
+3、编辑master节点的 hosts 文件，如下
+[masters]
+k8s-master
+k8s-node1
+k8s-node2
+
+[etcd]
+k8s-master
+
+[nodes]
+k8s-master
+k8s-node1
+k8s-node2
+
+
+执行：
+1、切换到 deploy_cluster.yml 文件所在目录
+2、执行命令： ansible-playbook -i hosts deploy_cluster.yml
